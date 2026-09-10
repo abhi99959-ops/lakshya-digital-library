@@ -1,5 +1,5 @@
 workflows:
-  android-debug:
+  android-release:
     name: Lakshya Digital Library Android
     max_build_duration: 60
     environment:
@@ -7,6 +7,10 @@ workflows:
     scripts:
       - name: Get Flutter packages
         script: flutter pub get
+      - name: Generate modern Android project
+        script: |
+          rm -rf android
+          flutter create --platforms=android --org com.lakshyadigitallibrary .
       - name: Build Android APK
         script: flutter build apk --release
     artifacts:
